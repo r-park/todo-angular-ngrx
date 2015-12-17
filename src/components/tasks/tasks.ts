@@ -1,10 +1,10 @@
 import { Component, View } from 'angular2/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import { ITask } from 'modules/task/task';
+import { TaskActions } from 'modules/task/task-actions';
 import { TaskForm } from './task-form/task-form';
 import { TaskList } from './task-list/task-list';
-import { ITask } from '../../modules/task/task';
-import { TaskActions } from '../../modules/task/task-actions';
 
 
 @Component({

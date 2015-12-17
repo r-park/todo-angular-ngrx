@@ -1,6 +1,6 @@
 import { FORM_DIRECTIVES } from 'angular2/common';
 import { Component, View } from 'angular2/core';
-import { TaskActions } from '../../../modules/task/task-actions';
+import { TaskActions } from 'modules/task/task-actions';
 
 const styles: string = require('./task-form.scss');
 

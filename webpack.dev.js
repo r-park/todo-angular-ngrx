@@ -19,13 +19,13 @@ module.exports = {
     ],
     vendor: [
       'es6-shim',
-      'rxjs',
       'angular2/bundles/angular2-polyfills',
       'angular2/common',
       'angular2/core',
       'angular2/http',
       'angular2/platform/browser',
-      'angular2/router'
+      'angular2/router',
+      'rxjs'
     ]
   },
 

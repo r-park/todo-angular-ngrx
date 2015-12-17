@@ -2,7 +2,7 @@ import { NgFor } from 'angular2/common';
 import { Component, Input, View } from 'angular2/core';
 import { RouterLink, RouteParams } from 'angular2/router';
 import { Observable } from 'rxjs/Observable';
-import { ITask } from '../../../modules/task/task';
+import { ITask } from 'modules/task/task';
 import { TaskItem } from '../task-item/task-item';
 import { TaskListFilterPipe } from './task-list-filter-pipe';
 
