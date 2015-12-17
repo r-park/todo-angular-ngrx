@@ -6,6 +6,7 @@ const gulp          = require('gulp');
 const gutil         = require('gulp-util');
 const historyApi    = require('connect-history-api-fallback');
 const karma         = require('karma');
+const nodemon       = require('gulp-nodemon');
 const tslint        = require('gulp-tslint');
 const webpack       = require('webpack');
 const WebpackServer = require('webpack-dev-server');
@@ -40,6 +41,16 @@ const config = {
 
   karma: {
     configFile: __dirname + '/karma.conf.js'
+  },
+
+  nodemon: {
+    env: {
+      NODE_ENV: 'development'
+    },
+    script: './server/server.js',
+    watch: [
+      'server/**/*.js'
+    ]
   },
 
   tslint: {
@@ -79,6 +90,11 @@ gulp.task('serve', done => {
 });
 
 
+gulp.task('serve.api', done => {
+  nodemon(config.nodemon).on('start', done);
+});
+
+
 gulp.task('serve.dev', done => {
   let conf = require(config.webpack.dev);
   let compiler = webpack(conf);
@@ -115,7 +131,10 @@ gulp.task('build', gulp.series(
 //===========================
 //  DEVELOP
 //---------------------------
-gulp.task('default', gulp.task('serve.dev'));
+gulp.task('default', gulp.parallel(
+  'serve.api',
+  'serve.dev'
+));
 
 
 //===========================
