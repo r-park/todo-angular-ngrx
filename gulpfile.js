@@ -131,7 +131,10 @@ gulp.task('build', gulp.series(
 //===========================
 //  DEVELOP
 //---------------------------
-gulp.task('default', gulp.task('serve.dev'));
+gulp.task('default', gulp.parallel(
+  'serve.api',
+  'serve.dev'
+));
 
 
 //===========================

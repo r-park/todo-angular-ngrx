@@ -20,11 +20,10 @@
     "test": "./node_modules/.bin/gulp test"
   },
   "dependencies": {
+    "@ngrx/store": "~1.0.7",
     "angular2": "2.0.0-beta.0",
     "es6-shim": "~0.33.13",
-    "reflect-metadata": "0.1.2",
-    "rxjs": "5.0.0-beta.0",
-    "zone.js": "0.5.10"
+    "rxjs": "5.0.0-beta.0"
   },
   "devDependencies": {
     "autoprefixer-loader": "~3.1.0",
@@ -47,16 +46,19 @@
     "karma-sourcemap-loader": "~0.3.6",
     "karma-webpack": "~1.7.0",
     "lowdb": "~0.10.3",
+    "minx": "~0.4.14",
     "morgan": "~1.6.1",
     "node-sass": "~3.4.2",
     "node-uuid": "~1.4.7",
     "raw-loader": "~0.5.1",
+    "reflect-metadata": "0.1.2",
     "sass-loader": "~3.1.2",
     "style-loader": "~0.13.0",
     "ts-loader": "~0.7.2",
     "tslint": "~3.2.0",
     "typescript": "~1.7.5",
     "webpack": "~1.12.9",
-    "webpack-dev-server": "~1.14.0"
+    "webpack-dev-server": "~1.14.0",
+    "zone.js": "0.5.10"
   }
 }
