@@ -6,6 +6,7 @@ const gulp          = require('gulp');
 const gutil         = require('gulp-util');
 const historyApi    = require('connect-history-api-fallback');
 const karma         = require('karma');
+const nodemon       = require('gulp-nodemon');
 const tslint        = require('gulp-tslint');
 const webpack       = require('webpack');
 const WebpackServer = require('webpack-dev-server');
@@ -42,6 +43,16 @@ const config = {
     configFile: __dirname + '/karma.conf.js'
   },
 
+  nodemon: {
+    env: {
+      NODE_ENV: 'development'
+    },
+    script: './server/server.js',
+    watch: [
+      'server/**/*.js'
+    ]
+  },
+
   tslint: {
     report: {
       options: {emitError: true},
@@ -76,6 +87,11 @@ gulp.task('serve', done => {
   config.browserSync.server.middleware = [historyApi()];
   browserSync.create()
     .init(config.browserSync, done);
+});
+
+
+gulp.task('serve.api', done => {
+  nodemon(config.nodemon).on('start', done);
 });
 
 
