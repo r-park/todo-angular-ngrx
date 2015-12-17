@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.org/r-park/todo-angular2-ngrx.svg?branch=master)](https://travis-ci.org/r-park/todo-angular2-ngrx)
 
 
-# Todo app with Angular 2 ngrx/store
-A simple Todo app example featuring <a href="https://github.com/ngrx/store" target="_blank">ngrx/store</a> (a RxJS implementation of Redux).
+# Todo app with Angular 2 and Redux via ngrx/store
+A simple Todo app example featuring <a href="https://github.com/ngrx/store" target="_blank">ngrx/store</a> — a RxJS implementation of Redux.
 
 - Angular `2.0.0-beta.0`
 - Express
