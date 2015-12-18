@@ -4,14 +4,14 @@ import { HTTP_PROVIDERS } from 'angular2/http';
 import { APP_BASE_HREF, ROUTER_PROVIDERS } from 'angular2/router';
 
 // root component
-import { App } from './components/app/app';
+import { App } from 'components/app/app';
 
 // modules
-import { API_PROVIDERS } from './modules/api/providers';
-import { TASK_PROVIDERS } from './modules/task/providers';
+import { API_PROVIDERS } from 'modules/api/providers';
+import { TASK_PROVIDERS } from 'modules/task/providers';
 
 // global styles
-import './styles/styles.scss';
+import 'styles/styles.scss';
 
 
 enableProdMode();

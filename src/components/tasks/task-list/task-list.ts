@@ -1,8 +1,8 @@
 import { NgFor } from 'angular2/common';
-import { Component, Input, View } from 'angular2/core';
+import { Component, Input } from 'angular2/core';
 import { RouterLink, RouteParams } from 'angular2/router';
 import { Observable } from 'rxjs/Observable';
-import { ITask } from '../../../modules/task/task';
+import { ITask } from 'modules/task/task';
 import { TaskItem } from '../task-item/task-item';
 import { TaskListFilterPipe } from './task-list-filter-pipe';
 
@@ -10,10 +10,6 @@ const styles: string = require('./task-list.scss');
 
 
 @Component({
-  selector: 'task-list'
-})
-
-@View({
   directives: [
     NgFor,
     RouterLink,
@@ -22,6 +18,7 @@ const styles: string = require('./task-list.scss');
   pipes: [
     TaskListFilterPipe
   ],
+  selector: 'task-list',
   styles: [styles],
 
   template: `
