@@ -1,5 +1,5 @@
 import { NgFor } from 'angular2/common';
-import { Component, Input } from 'angular2/core';
+import { ChangeDetectionStrategy, Component, Input } from 'angular2/core';
 import { RouterLink, RouteParams } from 'angular2/router';
 import { Observable } from 'rxjs/Observable';
 import { ITask } from 'modules/task/task';
@@ -10,6 +10,7 @@ const styles: string = require('./task-list.scss');
 
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   directives: [
     NgFor,
     RouterLink,

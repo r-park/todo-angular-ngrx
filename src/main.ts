@@ -14,7 +14,9 @@ import { TASK_PROVIDERS } from 'modules/task/providers';
 import 'styles/styles.scss';
 
 
-enableProdMode();
+if (process.env.NODE_ENV === 'production') {
+  enableProdMode();
+}
 
 bootstrap(App, [
   HTTP_PROVIDERS,
