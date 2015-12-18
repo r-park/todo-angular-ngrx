@@ -1,5 +1,5 @@
 import { NgIf } from 'angular2/common';
-import { Component, View } from 'angular2/core';
+import { Component } from 'angular2/core';
 import { RouteConfig, RouterOutlet } from 'angular2/router';
 import { Tasks } from '../tasks/tasks';
 
@@ -7,14 +7,11 @@ const styles: string = require('./app.scss');
 
 
 @Component({
-  selector: 'app'
-})
-
-@View({
   directives: [
     NgIf,
     RouterOutlet
   ],
+  selector: 'app',
   styles: [styles],
 
   template: `

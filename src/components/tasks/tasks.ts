@@ -1,4 +1,4 @@
-import { Component, View } from 'angular2/core';
+import { Component } from 'angular2/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { ITask } from 'modules/task/task';
@@ -8,14 +8,12 @@ import { TaskList } from './task-list/task-list';
 
 
 @Component({
-  selector: 'tasks'
-})
-
-@View({
   directives: [
     TaskForm,
     TaskList
   ],
+  selector: 'tasks',
+
   template: `
     <div class="g-row">
       <div class="g-col">
