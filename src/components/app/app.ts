@@ -1,4 +1,3 @@
-import { NgIf } from 'angular2/common';
 import { Component } from 'angular2/core';
 import { RouteConfig, RouterOutlet } from 'angular2/router';
 import { Tasks } from '../tasks/tasks';
@@ -8,7 +7,6 @@ const styles: string = require('./app.scss');
 
 @Component({
   directives: [
-    NgIf,
     RouterOutlet
   ],
   selector: 'app',

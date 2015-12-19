@@ -1,4 +1,4 @@
-import { enableProdMode, provide } from 'angular2/core';
+import { /* enableProdMode,*/ provide } from 'angular2/core';
 import { bootstrap } from 'angular2/platform/browser';
 import { HTTP_PROVIDERS } from 'angular2/http';
 import { APP_BASE_HREF, ROUTER_PROVIDERS } from 'angular2/router';
@@ -13,10 +13,6 @@ import { TASK_PROVIDERS } from 'modules/task/providers';
 // global styles
 import 'styles/styles.scss';
 
-
-if (process.env.NODE_ENV === 'production') {
-  enableProdMode();
-}
 
 bootstrap(App, [
   HTTP_PROVIDERS,
