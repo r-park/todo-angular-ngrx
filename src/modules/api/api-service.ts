@@ -1,5 +1,5 @@
 import { Injectable } from 'angular2/core';
-import { Http, Request, RequestMethod, Response } from 'angular2/http';
+import { Headers, Http, Request, RequestMethod, Response } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
 import { API_TASKS_URL } from './constants';
 
@@ -39,8 +39,13 @@ export class ApiService {
   }
 
   request(options: any): Observable<any> {
-    const req: Request = new Request(options);
-    return this.http.request(req)
+    if (options.body) {
+      options.headers = new Headers({
+        'Content-Type': 'application/json'
+      });
+    }
+
+    return this.http.request(new Request(options))
       .map((res: Response) => res.json());
   }
 }
