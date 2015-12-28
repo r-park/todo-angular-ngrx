@@ -25,7 +25,8 @@ module.exports = {
       'angular2/http',
       'angular2/platform/browser',
       'angular2/router',
-      'rxjs'
+      'rxjs',
+      '@ngrx/store'
     ]
   },
 

@@ -8,7 +8,7 @@ const morgan = require('morgan');
 
 const app = express();
 
-app.use(morgan('combined'));
+app.use(morgan('dev'));
 
 app.use(bodyParser.text());
 app.use(bodyParser.json());

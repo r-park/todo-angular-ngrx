@@ -1,5 +1,5 @@
 import { Injectable } from 'angular2/core';
-import { Store } from '@ngrx/store';
+import { Dispatcher } from '@ngrx/store';
 import { ApiService } from '../api/api-service';
 import { ITask, Task } from './task';
 
@@ -13,12 +13,12 @@ import {
 
 @Injectable()
 export class TaskActions {
-  constructor(private api: ApiService, private store: Store<any>) {}
+  constructor(private api: ApiService, private dispatcher: Dispatcher<any>) {}
 
   createTask(title: string): void {
     this.api.createTask(JSON.stringify(new Task(title)))
       .subscribe((data: ITask) => {
-        this.store.dispatch({
+        this.dispatcher.dispatch({
           type: CREATE_TASK,
           payload: data
         });
@@ -28,7 +28,7 @@ export class TaskActions {
   deleteTask(task: ITask): void {
     this.api.deleteTask(task.id)
       .subscribe((data: ITask) => {
-        this.store.dispatch({
+        this.dispatcher.dispatch({
           type: DELETE_TASK,
           payload: data
         });
@@ -38,7 +38,7 @@ export class TaskActions {
   fetchTasks(): void {
     this.api.fetchTasks()
       .subscribe((data: ITask[]) => {
-        this.store.dispatch({
+        this.dispatcher.dispatch({
           type: FETCH_TASKS,
           payload: data
         });
@@ -48,7 +48,7 @@ export class TaskActions {
   updateTask(task: ITask, changes: any): void {
     this.api.updateTask(task.id, JSON.stringify(changes))
       .subscribe((data: ITask) => {
-        this.store.dispatch({
+        this.dispatcher.dispatch({
           type: UPDATE_TASK,
           payload: data
         });
