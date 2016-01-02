@@ -1,5 +1,5 @@
 import { Action, Reducer } from '@ngrx/store';
-import { ITask } from './task';
+import { Task } from './task';
 
 import {
   CREATE_TASK,
@@ -9,16 +9,16 @@ import {
 } from './constants';
 
 
-export const INITIAL_STATE: ITask[] = [];
+export const INITIAL_STATE: Task[] = [];
 
 
-export const taskReducer: Reducer<ITask[]> = (state: ITask[], action: Action) => {
+export const taskReducer: Reducer<Task[]> = (state: Task[], action: Action) => {
   switch (action.type) {
     case CREATE_TASK:
       return [ ...state, action.payload ];
 
     case DELETE_TASK:
-      return state.filter((task: ITask) => {
+      return state.filter((task: Task) => {
         return task.id !== action.payload.id;
       });
 
@@ -26,7 +26,7 @@ export const taskReducer: Reducer<ITask[]> = (state: ITask[], action: Action) =>
       return action.payload || [];
 
     case UPDATE_TASK:
-      return state.map((task: ITask) => {
+      return state.map((task: Task) => {
         return task.id === action.payload.id ? action.payload : task;
       });
 

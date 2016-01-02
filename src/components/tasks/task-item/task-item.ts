@@ -1,5 +1,5 @@
 import { Component, Input } from 'angular2/core';
-import { ITask } from 'modules/task/task';
+import { Task } from 'modules/task/task';
 import { TaskActions } from 'modules/task/task-actions';
 import { Autofocus } from 'directives/autofocus-directive';
 
@@ -17,7 +17,7 @@ const template: string = require('./task-item.html');
 })
 
 export class TaskItem {
-  @Input() model: ITask;
+  @Input() model: Task;
 
   editing: boolean = false;
   title: string = '';

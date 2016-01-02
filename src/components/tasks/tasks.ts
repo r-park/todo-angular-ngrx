@@ -1,7 +1,7 @@
 import { Component } from 'angular2/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { ITask } from 'modules/task/task';
+import { Task } from 'modules/task/task';
 import { TaskActions } from 'modules/task/task-actions';
 import { TaskForm } from './task-form/task-form';
 import { TaskList } from './task-list/task-list';
@@ -28,7 +28,7 @@ import { TaskList } from './task-list/task-list';
 })
 
 export class Tasks {
-  tasks: Observable<ITask[]>;
+  tasks: Observable<Task[]>;
 
   constructor(private actions: TaskActions, private store: Store<any>) {
     this.tasks = store.select('tasks');

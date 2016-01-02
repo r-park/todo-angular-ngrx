@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from 'angular2/core';
 import { RouterLink, RouteParams } from 'angular2/router';
 import { Observable } from 'rxjs/Observable';
-import { ITask } from 'modules/task/task';
+import { Task } from 'modules/task/task';
 import { TaskItem } from '../task-item/task-item';
 import { TaskListFilterPipe } from './task-list-filter-pipe';
 
@@ -34,7 +34,7 @@ const styles: string = require('./task-list.scss');
 })
 
 export class TaskList {
-  @Input() tasks: Observable<ITask[]>;
+  @Input() tasks: Observable<Task[]>;
   filter: string;
 
   constructor(params: RouteParams) {
