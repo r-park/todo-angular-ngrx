@@ -22,7 +22,7 @@
     "test": "./node_modules/.bin/karma start --single-run"
   },
   "dependencies": {
-    "@ngrx/store": "~1.1.0",
+    "@ngrx/store": "~1.1.2",
     "angular2": "2.0.0-beta.0",
     "es6-shim": "~0.33.13",
     "rxjs": "5.0.0-beta.0"
@@ -37,7 +37,7 @@
     "express": "~4.13.3",
     "extract-text-webpack-plugin": "~0.9.1",
     "gulp": "gulpjs/gulp.git#4.0",
-    "gulp-nodemon": "~2.0.4",
+    "gulp-nodemon": "~2.0.6",
     "gulp-tslint": "~4.2.2",
     "gulp-util": "~3.0.7",
     "html-webpack-plugin": "~1.7.0",
