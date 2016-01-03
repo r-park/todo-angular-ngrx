@@ -22,28 +22,28 @@ export class TaskService {
   private fetchTasks$: Subject<any> = new Subject();
   private updateTask$: Subject<any> = new Subject();
 
-  constructor(private api: ApiService, private dispatcher: Dispatcher<any>, private store: Store<any>) {
+  constructor(api: ApiService, dispatcher: Dispatcher<any>, store: Store<any>) {
     this.tasks = store.select('tasks');
 
     this.createTask$
-      .mergeMap((task: Task) => this.api.createTask(task))
+      .mergeMap((task: Task) => api.createTask(task))
       .map((payload: Task) => ({type: CREATE_TASK, payload}))
-      .subscribe(this.dispatcher);
+      .subscribe(dispatcher);
 
     this.deleteTask$
-      .mergeMap((taskId: string) => this.api.deleteTask(taskId))
+      .mergeMap((taskId: string) => api.deleteTask(taskId))
       .map((payload: Task) => ({type: DELETE_TASK, payload}))
-      .subscribe(this.dispatcher);
+      .subscribe(dispatcher);
 
     this.fetchTasks$
-      .mergeMap(() => this.api.fetchTasks())
+      .mergeMap(() => api.fetchTasks())
       .map((payload: Task[]) => ({type: FETCH_TASKS, payload}))
-      .subscribe(this.dispatcher);
+      .subscribe(dispatcher);
 
     this.updateTask$
-      .mergeMap(({taskId, changes}: any) => this.api.updateTask(taskId, changes))
+      .mergeMap(({taskId, changes}: any) => api.updateTask(taskId, changes))
       .map((payload: Task) => ({type: UPDATE_TASK, payload}))
-      .subscribe(this.dispatcher);
+      .subscribe(dispatcher);
 
     this.fetchTasks();
   }
