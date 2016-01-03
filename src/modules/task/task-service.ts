@@ -2,7 +2,7 @@ import { Injectable } from 'angular2/core';
 import { Dispatcher, Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import { ApiService } from '../api/api-service';
+import { ApiService } from 'modules/api';
 import { Task } from './task';
 
 import {

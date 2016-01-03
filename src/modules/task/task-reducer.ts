@@ -9,9 +9,6 @@ import {
 } from './constants';
 
 
-export const INITIAL_STATE: Task[] = [];
-
-
 export const taskReducer: Reducer<Task[]> = (state: Task[], action: Action) => {
   switch (action.type) {
     case CREATE_TASK:
