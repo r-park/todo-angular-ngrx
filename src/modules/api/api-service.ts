@@ -1,6 +1,7 @@
 import { Injectable } from 'angular2/core';
 import { Headers, Http, Request, RequestMethod, Response } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
+import { Task } from '../task/task';
 import { API_TASKS_URL } from './constants';
 
 
@@ -8,7 +9,7 @@ import { API_TASKS_URL } from './constants';
 export class ApiService {
   constructor(private http: Http) {}
 
-  createTask(body: any): Observable<any> {
+  createTask(body: any): Observable<Task> {
     return this.request({
       body,
       method: RequestMethod.Post,
@@ -16,21 +17,21 @@ export class ApiService {
     });
   }
 
-  deleteTask(taskId: string): Observable<any> {
+  deleteTask(taskId: string): Observable<Task> {
     return this.request({
       method: RequestMethod.Delete,
       url: `${API_TASKS_URL}/${taskId}`
     });
   }
 
-  fetchTasks(): Observable<any> {
+  fetchTasks(): Observable<Task[]> {
     return this.request({
       method: RequestMethod.Get,
       url: API_TASKS_URL
     });
   }
 
-  updateTask(taskId: string, body: any): Observable<any> {
+  updateTask(taskId: string, body: any): Observable<Task> {
     return this.request({
       body,
       method: RequestMethod.Put,
