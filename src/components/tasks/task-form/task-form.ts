@@ -1,5 +1,5 @@
 import { Component } from 'angular2/core';
-import { TaskActions } from 'modules/task/task-actions';
+import { TaskService } from 'modules/task/task-service';
 
 const styles: string = require('./task-form.scss');
 
@@ -27,7 +27,7 @@ const styles: string = require('./task-form.scss');
 export class TaskForm {
   title: string = '';
 
-  constructor(private actions: TaskActions) {}
+  constructor(private taskService: TaskService) {}
 
   clear(): void {
     this.title = '';
@@ -36,7 +36,7 @@ export class TaskForm {
   submit(): void {
     const title: string = this.title.trim();
     if (title.length) {
-      this.actions.createTask(title);
+      this.taskService.createTask(title);
     }
     this.clear();
   }

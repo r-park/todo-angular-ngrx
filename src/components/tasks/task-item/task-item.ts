@@ -1,6 +1,6 @@
 import { Component, Input } from 'angular2/core';
 import { Task } from 'modules/task/task';
-import { TaskActions } from 'modules/task/task-actions';
+import { TaskService } from 'modules/task/task-service';
 import { Autofocus } from 'directives/autofocus-directive';
 
 const styles: string = require('./task-item.scss');
@@ -22,10 +22,10 @@ export class TaskItem {
   editing: boolean = false;
   title: string = '';
 
-  constructor(private actions: TaskActions) {}
+  constructor(private taskService: TaskService) {}
 
   delete(): void {
-    this.actions.deleteTask(this.model);
+    this.taskService.deleteTask(this.model);
   }
 
   editTitle(): void {
@@ -37,7 +37,7 @@ export class TaskItem {
     if (this.editing) {
       const title: string = this.title.trim();
       if (title.length && title !== this.model.title) {
-        this.actions.updateTask(this.model, {title});
+        this.taskService.updateTask(this.model, {title});
       }
       this.stopEditing();
     }
@@ -48,7 +48,7 @@ export class TaskItem {
   }
 
   toggleStatus(): void {
-    this.actions.updateTask(this.model, {
+    this.taskService.updateTask(this.model, {
       completed: !this.model.completed
     });
   }
