@@ -44,6 +44,8 @@ export class TaskService {
       .mergeMap(({taskId, changes}: any) => this.api.updateTask(taskId, changes))
       .map((payload: Task) => ({type: UPDATE_TASK, payload}))
       .subscribe(this.dispatcher);
+
+    this.fetchTasks();
   }
 
   createTask(title: string): void {
