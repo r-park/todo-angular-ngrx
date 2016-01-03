@@ -1,5 +1,5 @@
 import { Component } from 'angular2/core';
-import { TaskService } from 'modules/task/task-service';
+import { TaskService } from 'modules/task';
 import { TaskForm } from './task-form/task-form';
 import { TaskList } from './task-list/task-list';
 

@@ -1,5 +1,5 @@
 import { Component } from 'angular2/core';
-import { TaskService } from 'modules/task/task-service';
+import { TaskService } from 'modules/task';
 
 const styles: string = require('./task-form.scss');
 
