@@ -25,7 +25,5 @@ import { TaskList } from './task-list/task-list';
 })
 
 export class Tasks {
-  constructor(private taskService: TaskService) {
-    taskService.fetchTasks();
-  }
+  constructor(private taskService: TaskService) {}
 }
