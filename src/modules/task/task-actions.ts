@@ -16,7 +16,7 @@ export class TaskActions {
   constructor(private api: ApiService, private dispatcher: Dispatcher<any>) {}
 
   createTask(title: string): void {
-    this.api.createTask(JSON.stringify(new Task(title)))
+    this.api.createTask(new Task(title))
       .subscribe((data: Task) => {
         this.dispatcher.dispatch({
           type: CREATE_TASK,
@@ -46,7 +46,7 @@ export class TaskActions {
   }
 
   updateTask(task: Task, changes: any): void {
-    this.api.updateTask(task.id, JSON.stringify(changes))
+    this.api.updateTask(task.id, changes)
       .subscribe((data: Task) => {
         this.dispatcher.dispatch({
           type: UPDATE_TASK,

@@ -8,7 +8,7 @@ import { API_TASKS_URL } from './constants';
 export class ApiService {
   constructor(private http: Http) {}
 
-  createTask(body: string): Observable<any> {
+  createTask(body: any): Observable<any> {
     return this.request({
       body,
       method: RequestMethod.Post,
@@ -30,7 +30,7 @@ export class ApiService {
     });
   }
 
-  updateTask(taskId: string, body: string): Observable<any> {
+  updateTask(taskId: string, body: any): Observable<any> {
     return this.request({
       body,
       method: RequestMethod.Put,
@@ -40,6 +40,10 @@ export class ApiService {
 
   request(options: any): Observable<any> {
     if (options.body) {
+      if (typeof options.body !== 'string') {
+        options.body = JSON.stringify(options.body);
+      }
+
       options.headers = new Headers({
         'Content-Type': 'application/json'
       });
