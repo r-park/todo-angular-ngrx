@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from 'angular2/core';
-import { ITask } from 'modules/task/task';
+import { Task } from 'modules/task/task';
 
 
 @Pipe({
@@ -8,19 +8,19 @@ import { ITask } from 'modules/task/task';
 })
 
 export class TaskListFilterPipe implements PipeTransform {
-  transform(list: ITask[], filterType?: string[]): ITask[] {
+  transform(list: Task[], filterType?: string[]): Task[] {
     if (!list || !filterType) {
       return list;
     }
 
     switch (filterType[0]) {
       case 'active':
-        return list.filter((task: ITask) => {
+        return list.filter((task: Task) => {
           return !task.completed;
         });
 
       case 'completed':
-        return list.filter((task: ITask) => {
+        return list.filter((task: Task) => {
           return task.completed;
         });
 
