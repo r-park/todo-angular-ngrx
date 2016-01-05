@@ -3,14 +3,8 @@ import { Dispatcher, Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { ApiService } from 'modules/api';
+import * as types from './constants';
 import { Task } from './task';
-
-import {
-  CREATE_TASK,
-  DELETE_TASK,
-  FETCH_TASKS,
-  UPDATE_TASK
-} from './constants';
 
 
 @Injectable()
@@ -27,22 +21,22 @@ export class TaskService {
 
     this.createTask$
       .mergeMap((task: Task) => api.createTask(task))
-      .map((payload: Task) => ({type: CREATE_TASK, payload}))
+      .map((payload: Task) => ({type: types.CREATE_TASK_SUCCESS, payload}))
       .subscribe(dispatcher);
 
     this.deleteTask$
       .mergeMap((taskId: string) => api.deleteTask(taskId))
-      .map((payload: Task) => ({type: DELETE_TASK, payload}))
+      .map((payload: Task) => ({type: types.DELETE_TASK_SUCCESS, payload}))
       .subscribe(dispatcher);
 
     this.fetchTasks$
       .mergeMap(() => api.fetchTasks())
-      .map((payload: Task[]) => ({type: FETCH_TASKS, payload}))
+      .map((payload: Task[]) => ({type: types.FETCH_TASKS_SUCCESS, payload}))
       .subscribe(dispatcher);
 
     this.updateTask$
       .mergeMap(({taskId, changes}: any) => api.updateTask(taskId, changes))
-      .map((payload: Task) => ({type: UPDATE_TASK, payload}))
+      .map((payload: Task) => ({type: types.UPDATE_TASK_SUCCESS, payload}))
       .subscribe(dispatcher);
 
     this.fetchTasks();
