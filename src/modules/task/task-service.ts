@@ -20,23 +20,27 @@ export class TaskService {
     this.tasks = store.select('tasks');
 
     this.createTask$
-      .mergeMap((task: Task) => api.createTask(task))
-      .map((payload: Task) => ({type: types.CREATE_TASK_SUCCESS, payload}))
+      .mergeMap(
+        (task: Task) => api.createTask(task),
+        (task: Task, payload: Task) => ({type: types.CREATE_TASK_SUCCESS, payload}))
       .subscribe(dispatcher);
 
     this.deleteTask$
-      .mergeMap((taskId: string) => api.deleteTask(taskId))
-      .map((payload: Task) => ({type: types.DELETE_TASK_SUCCESS, payload}))
+      .mergeMap(
+        (taskId: string) => api.deleteTask(taskId),
+        (task: Task, payload: Task) => ({type: types.DELETE_TASK_SUCCESS, payload}))
       .subscribe(dispatcher);
 
     this.fetchTasks$
-      .mergeMap(() => api.fetchTasks())
-      .map((payload: Task[]) => ({type: types.FETCH_TASKS_SUCCESS, payload}))
+      .mergeMap(
+        () => api.fetchTasks(),
+        (task: Task, payload: Task[]) => ({type: types.FETCH_TASKS_SUCCESS, payload}))
       .subscribe(dispatcher);
 
     this.updateTask$
-      .mergeMap(({taskId, changes}: any) => api.updateTask(taskId, changes))
-      .map((payload: Task) => ({type: types.UPDATE_TASK_SUCCESS, payload}))
+      .mergeMap(
+        ({taskId, changes}: any) => api.updateTask(taskId, changes),
+        (task: Task, payload: Task) => ({type: types.UPDATE_TASK_SUCCESS, payload}))
       .subscribe(dispatcher);
 
     this.fetchTasks();
