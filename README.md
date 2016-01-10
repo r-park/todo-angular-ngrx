@@ -4,14 +4,14 @@
 # Todo app with Angular2 and ngrx/store
 A simple Todo app example featuring <a href="https://github.com/ngrx/store" target="_blank">ngrx/store</a> — RxJS powered state management inspired by Redux for Angular2 apps.
 
-- Angular `2.0.0-beta.0`
+- Angular
 - Express
-- Gulp `4.0.0-alpha.2`
-- NgRx/store `~1.0.7`
+- Gulp
+- NgRx/store
   - RxJS implementation of Redux
-- RxJS `5.0.0-beta.0`
+- RxJS
 - SASS
-- Typescript `~1.7.5`
+- Typescript
 - Webpack
   - Inlines external SCSS files
   - Inlines external HTML templates
