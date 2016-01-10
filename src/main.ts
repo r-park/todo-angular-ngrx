@@ -8,7 +8,7 @@ import { App } from 'components/app/app';
 
 // module providers
 import { API_PROVIDERS } from 'modules/api';
-import { STORE_PROVIDERS } from 'modules/store';
+import { REDUCER_PROVIDERS } from 'modules/reducers';
 import { TASK_PROVIDERS } from 'modules/task';
 
 // global styles
@@ -19,7 +19,7 @@ bootstrap(App, [
   HTTP_PROVIDERS,
   ROUTER_PROVIDERS,
   API_PROVIDERS,
-  STORE_PROVIDERS,
+  REDUCER_PROVIDERS,
   TASK_PROVIDERS,
   provide(APP_BASE_HREF, {useValue: '/'})
 ]).catch((error: Error) => console.error(error));

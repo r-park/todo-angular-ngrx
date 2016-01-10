@@ -3,7 +3,7 @@ import { Task } from './task';
 import * as types from './constants';
 
 
-export const taskReducer: Reducer<Task[]> = (state: Task[], action: Action) => {
+export const taskReducer: Reducer<Task[]> = (state: Task[] = [], action: Action) => {
   switch (action.type) {
     case types.CREATE_TASK_SUCCESS:
       return [ ...state, action.payload ];
