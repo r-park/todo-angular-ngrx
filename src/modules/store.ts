@@ -2,6 +2,6 @@ import { provideStore } from '@ngrx/store';
 import { taskReducer } from './task';
 
 
-export const REDUCER_PROVIDERS: any[] = provideStore(
-  {tasks: taskReducer}
-);
+export const STORE_PROVIDER: any[] = provideStore({
+  tasks: taskReducer
+});
