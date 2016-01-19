@@ -1,10 +1,11 @@
-import { Component } from 'angular2/core';
+import { ChangeDetectionStrategy, Component } from 'angular2/core';
 import { TaskService } from 'modules/task';
 
 const styles: string = require('./task-form.scss');
 
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'task-form',
   styles: [styles],
 

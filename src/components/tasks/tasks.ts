@@ -1,10 +1,11 @@
-import { Component } from 'angular2/core';
+import { ChangeDetectionStrategy, Component } from 'angular2/core';
 import { TaskService } from 'modules/task';
 import { TaskForm } from './task-form/task-form';
 import { TaskList } from './task-list/task-list';
 
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   directives: [
     TaskForm,
     TaskList
@@ -18,7 +19,7 @@ import { TaskList } from './task-list/task-list';
       </div>
 
       <div class="g-col">
-        <task-list [tasks]="taskService.tasks"></task-list>
+        <task-list [tasks]="taskService.tasks$"></task-list>
       </div>
     </div>
   `
