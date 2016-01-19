@@ -9,7 +9,7 @@ import { Task } from './task';
 
 @Injectable()
 export class TaskService {
-  tasks: Observable<Task[]>;
+  tasks$: Observable<Task[]>;
 
   private createTask$: Subject<any> = new Subject();
   private deleteTask$: Subject<any> = new Subject();
@@ -17,7 +17,7 @@ export class TaskService {
   private updateTask$: Subject<any> = new Subject();
 
   constructor(api: ApiService, dispatcher: Dispatcher<any>, store: Store<any>) {
-    this.tasks = store.select('tasks');
+    this.tasks$ = store.select('tasks');
 
     this.createTask$
       .mergeMap((task: Task) => api.createTask(task),

@@ -1,4 +1,4 @@
-import { Component, Input } from 'angular2/core';
+import { ChangeDetectionStrategy, Component, Input } from 'angular2/core';
 import { Task, TaskService } from 'modules/task';
 import { Autofocus } from 'directives/autofocus-directive';
 
@@ -7,9 +7,8 @@ const template: string = require('./task-item.html');
 
 
 @Component({
-  directives: [
-    Autofocus
-  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  directives: [Autofocus],
   selector: 'task-item',
   styles: [styles],
   template
