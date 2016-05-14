@@ -1,12 +1,16 @@
-import { /* enableProdMode,*/ provide } from 'angular2/core';
-import { bootstrap } from 'angular2/platform/browser';
-import { HTTP_PROVIDERS } from 'angular2/http';
-import { APP_BASE_HREF, ROUTER_PROVIDERS } from 'angular2/router';
+import { enableProdMode } from '@angular/core';
+import { HTTP_PROVIDERS } from '@angular/http';
+import { bootstrap } from '@angular/platform-browser-dynamic';
+import { provideRouter } from '@ngrx/router';
 
 // core
 import { API_PROVIDERS } from './core/api';
+import { SAGA_PROVIDERS } from './core/sagas';
 import { STORE_PROVIDER } from './core/store';
 import { TASK_PROVIDERS } from './core/tasks';
+
+// routes
+import { routes } from './views/routes';
 
 // root component
 import { App } from './views/app/app';
@@ -15,11 +19,16 @@ import { App } from './views/app/app';
 import './views/common/styles.scss';
 
 
+if (process.env.NODE_ENV === 'production') {
+  enableProdMode();
+}
+
+
 bootstrap(App, [
   HTTP_PROVIDERS,
-  ROUTER_PROVIDERS,
   API_PROVIDERS,
+  SAGA_PROVIDERS,
   STORE_PROVIDER,
   TASK_PROVIDERS,
-  provide(APP_BASE_HREF, {useValue: '/'})
+  provideRouter(routes)
 ]).catch((error: Error) => console.error(error));

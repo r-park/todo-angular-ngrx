@@ -1,14 +1,13 @@
-import { ChangeDetectionStrategy, Component } from 'angular2/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TaskService } from 'src/core/tasks';
-
-const styles: string = require('./task-form.scss');
 
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'task-form',
-  styles: [styles],
-
+  styles: [
+    require('./task-form.scss')
+  ],
   template: `
     <form class="task-form" (ngSubmit)="submit()" novalidate>
       <input
@@ -28,7 +27,7 @@ const styles: string = require('./task-form.scss');
 export class TaskForm {
   title: string = '';
 
-  constructor(private taskService: TaskService) {}
+  constructor(public taskService: TaskService) {}
 
   clear(): void {
     this.title = '';

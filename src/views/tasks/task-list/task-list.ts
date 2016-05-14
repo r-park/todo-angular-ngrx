@@ -1,43 +1,38 @@
-import { ChangeDetectionStrategy, Component, Input } from 'angular2/core';
-import { RouterLink, RouteParams } from 'angular2/router';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Task } from 'src/core/tasks';
 import { TaskItem } from '../task-item/task-item';
 import { TaskListFilterPipe } from './task-list-filter-pipe';
 
-const styles: string = require('./task-list.scss');
-
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   directives: [
-    RouterLink,
     TaskItem
   ],
   pipes: [
     TaskListFilterPipe
   ],
   selector: 'task-list',
-  styles: [styles],
-
+  styles: [
+    require('./task-list.scss')
+  ],
   template: `
     <ul class="task-filters">
-      <li><a [class.active]="!filter" [routerLink]="['/Tasks']">View All</a></li>
-      <li><a [class.active]="filter == 'active'" [routerLink]="['/Tasks', {filter: 'active'}]">Active</a></li>
-      <li><a [class.active]="filter == 'completed'" [routerLink]="['/Tasks', {filter: 'completed'}]">Completed</a></li>
+      <li><a [class.active]="!filter" linkTo="/">View All</a></li>
+      <li><a [class.active]="filter == 'active'" linkTo="/" [queryParams]="{filter: 'active'}">Active</a></li>
+      <li><a [class.active]="filter == 'completed'" linkTo="/" [queryParams]="{filter: 'completed'}">Completed</a></li>
     </ul>
 
     <div class="task-list">
-      <task-item [model]="task" *ngFor="#task of tasks | async | filterTasks:filter"></task-item>
+      <task-item 
+        *ngFor="let task of tasks$ | async | filterTasks:filter"
+        [task]="task"></task-item>
     </div>
   `
 })
 
 export class TaskList {
-  @Input() tasks: Observable<Task[]>;
-  filter: string;
-
-  constructor(params: RouteParams) {
-    this.filter = params.get('filter');
-  }
+  @Input() filter: Observable<string>;
+  @Input() tasks$: Observable<Task[]>;
 }

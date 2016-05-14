@@ -1,41 +1,42 @@
-import { ChangeDetectionStrategy, Component, Input } from 'angular2/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Task, TaskService } from 'src/core/tasks';
-import { Autofocus } from 'src/views/common/directives/autofocus-directive';
-
-const styles: string = require('./task-item.scss');
-const template: string = require('./task-item.html');
+import { AutofocusDirective } from 'src/views/common';
 
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  directives: [Autofocus],
+  directives: [
+    AutofocusDirective
+  ],
   selector: 'task-item',
-  styles: [styles],
-  template
+  styles: [
+    require('./task-item.scss')
+  ],
+  template: require('./task-item.html')
 })
 
 export class TaskItem {
-  @Input() model: Task;
+  @Input() task: Task;
 
   editing: boolean = false;
   title: string = '';
 
-  constructor(private taskService: TaskService) {}
+  constructor(public taskService: TaskService) {}
 
   delete(): void {
-    this.taskService.deleteTask(this.model);
+    this.taskService.deleteTask(this.task);
   }
 
   editTitle(): void {
     this.editing = true;
-    this.title = this.model.title;
+    this.title = this.task.title;
   }
 
   saveTitle(): void {
     if (this.editing) {
-      const title: string = this.title.trim();
-      if (title.length && title !== this.model.title) {
-        this.taskService.updateTask(this.model, {title});
+      const title = this.title.trim();
+      if (title.length && title !== this.task.title) {
+        this.taskService.updateTask(this.task, {title});
       }
       this.stopEditing();
     }
@@ -46,8 +47,8 @@ export class TaskItem {
   }
 
   toggleStatus(): void {
-    this.taskService.updateTask(this.model, {
-      completed: !this.model.completed
+    this.taskService.updateTask(this.task, {
+      completed: !this.task.completed
     });
   }
 }

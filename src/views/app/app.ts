@@ -1,16 +1,11 @@
-import { Component } from 'angular2/core';
-import { RouteConfig, RouterOutlet } from 'angular2/router';
-import { Tasks } from 'src/views/tasks/tasks';
-
-const styles: string = require('./app.scss');
+import { Component } from '@angular/core';
 
 
 @Component({
-  directives: [
-    RouterOutlet
-  ],
   selector: 'app',
-  styles: [styles],
+  styles: [
+    require('./app.scss')
+  ],
 
   template: `
     <header class="header">
@@ -23,13 +18,9 @@ const styles: string = require('./app.scss');
     </header>
 
     <main class="main">
-      <router-outlet></router-outlet>
+      <route-view></route-view>
     </main>
   `
 })
-
-@RouteConfig([
-  {path: '/', component: Tasks, as: 'Tasks'}
-])
 
 export class App {}

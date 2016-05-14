@@ -1,5 +1,7 @@
-import { Injectable } from 'angular2/core';
-import { Headers, Http, Request, RequestMethod, Response } from 'angular2/http';
+import 'rxjs/add/operator/map';
+
+import { Injectable } from '@angular/core';
+import { Headers, Http, Request, RequestMethod, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Task } from 'src/core/tasks';
 import { API_TASKS_URL } from './constants';

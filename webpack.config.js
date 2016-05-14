@@ -85,7 +85,13 @@ if (ENV_DEVELOPMENT || ENV_PRODUCTION) {
       '@angular/http',
       '@angular/platform-browser-dynamic',
       '@ngrx/router',
-      '@ngrx/store'
+      '@ngrx/store',
+      'rxjs/Observable',
+      'rxjs/Subject',
+      'rxjs/add/operator/map',
+      'rxjs/add/operator/pluck',
+      'rxjs/add/operator/takeUntil',
+      'store-saga'
     ]
   };
 
@@ -152,7 +158,7 @@ if (ENV_PRODUCTION) {
     new ExtractTextPlugin('styles.css'),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
-      mangle: false,
+      mangle: true,
       compress: {
         dead_code: true, // eslint-disable-line camelcase
         screw_ie8: true, // eslint-disable-line camelcase

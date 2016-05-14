@@ -1,24 +1,24 @@
 import { Action, Reducer } from '@ngrx/store';
 import { Task } from './task';
-import * as types from './constants';
+import * as types from './action-types';
 
 
-export const taskReducer: Reducer<Task[]> = (state: Task[] = [], action: Action) => {
-  switch (action.type) {
+export const taskReducer: Reducer<Task[]> = (state: Task[] = [], {payload, type}: Action) => {
+  switch (type) {
     case types.CREATE_TASK_SUCCESS:
-      return [ ...state, action.payload ];
+      return [ ...state, payload.task ];
 
     case types.DELETE_TASK_SUCCESS:
       return state.filter((task: Task) => {
-        return task.id !== action.payload.id;
+        return task.id !== payload.task.id;
       });
 
     case types.FETCH_TASKS_SUCCESS:
-      return action.payload || [];
+      return payload.tasks || [];
 
     case types.UPDATE_TASK_SUCCESS:
       return state.map((task: Task) => {
-        return task.id === action.payload.id ? action.payload : task;
+        return task.id === payload.task.id ? payload.task : task;
       });
 
     default:
