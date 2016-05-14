@@ -1,7 +1,8 @@
 #---------------------------------
-# Directories
+# Files and Directories
 #---------------------------------
 **/node_modules/
+server/db.json
 target/
 tmp/
 typings/

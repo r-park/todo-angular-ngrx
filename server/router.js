@@ -2,19 +2,20 @@
 
 const express = require('express');
 const low = require('lowdb');
+const path = require('path');
 const storage = require('lowdb/file-sync');
 const uuid = require('node-uuid');
 
 
-//===========================
+//=========================================================
 //  DATABASE
-//---------------------------
-const db = low(__dirname + '/db.json', {storage});
+//---------------------------------------------------------
+const db = low(path.join(__dirname, 'db.json'), {storage});
 
 
-//===========================
+//=========================================================
 //  ROUTER
-//---------------------------
+//---------------------------------------------------------
 const router = new express.Router();
 module.exports = router;
 
