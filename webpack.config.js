@@ -71,14 +71,20 @@ if (ENV_DEVELOPMENT || ENV_PRODUCTION) {
       './src/main'
     ],
     vendor: [
-      'es6-shim',
-      'angular2/bundles/angular2-polyfills',
-      'angular2/common',
-      'angular2/core',
-      'angular2/http',
-      'angular2/platform/browser',
-      'angular2/router',
-      'rxjs',
+      'core-js/es6/array',
+      'core-js/es6/map',
+      'core-js/es6/set',
+      'core-js/es6/string',
+      'core-js/es6/symbol',
+      'core-js/es7/reflect',
+      'core-js/fn/array/includes',
+      'core-js/fn/object/assign',
+      'zone.js',
+      '@angular/common',
+      '@angular/core',
+      '@angular/http',
+      '@angular/platform-browser-dynamic',
+      '@ngrx/router',
       '@ngrx/store'
     ]
   };

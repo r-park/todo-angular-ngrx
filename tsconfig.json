@@ -1,5 +1,5 @@
 {
-  "version": "1.7.5",
+  "version": "1.8.10",
 
   "compilerOptions": {
     "emitDecoratorMetadata": true,
@@ -11,6 +11,7 @@
   },
 
   "files": [
-    "src/main.ts"
+    "src/main.ts",
+    "typings/browser.d.ts"
   ]
 }
