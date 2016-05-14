@@ -1,18 +1,10 @@
+sudo: required
+dist: trusty
+
 language: node_js
 
 node_js:
-  - 4.2
-  - 5.2
-
-env:
-  - CXX=g++-4.8
-
-addons:
-  apt:
-    packages:
-      - g++-4.8
-    sources:
-      - ubuntu-toolchain-r-test
+  - "5.11"
 
 before_install:
   - export CHROME_BIN=chromium-browser
@@ -23,7 +15,7 @@ install:
   - npm install
 
 script:
-  - ./node_modules/.bin/gulp dist
+  - npm run build
 
 notifications:
   email:

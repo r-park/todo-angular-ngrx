@@ -1,17 +1,14 @@
-module.exports = (config) => {
+module.exports = config => {
   config.set({
     frameworks: ['jasmine'],
 
-    files: [
-      'node_modules/es6-shim/es6-shim.min.js',
-      'karma.entry.js'
-    ],
+    files: ['karma.entry.js'],
 
     preprocessors: {
       'karma.entry.js': ['webpack', 'sourcemap']
     },
 
-    webpack: require('./webpack.test'),
+    webpack: require('./webpack.config'),
 
     webpackServer: {
       noInfo: true
