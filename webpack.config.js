@@ -28,14 +28,14 @@ module.exports = config;
 config.resolve = {
   extensions: ['', '.ts', '.js'],
   modulesDirectories: ['node_modules'],
-  root: path.resolve('./src')
+  root: path.resolve('.')
 };
 
 config.module = {
   loaders: [
     {test: /\.html$/, loader: 'raw'},
     {test: /\.ts$/, loader: 'ts', exclude: /node_modules/},
-    {test: /\.scss$/, loader: 'raw!postcss-loader!sass', include: path.resolve('src/components')}
+    {test: /\.scss$/, loader: 'raw!postcss-loader!sass', exclude: path.resolve('src/views/common/styles'), include: path.resolve('src/views')}
   ],
 
   noParse: [
@@ -110,7 +110,7 @@ if (ENV_DEVELOPMENT) {
   config.entry.main.unshift(`webpack-dev-server/client?http://${HOST}:${PORT}`);
 
   config.module.loaders.push(
-    {test: /\.scss$/, loader: 'style!css!postcss-loader!sass', include: path.resolve('src/styles')}
+    {test: /\.scss$/, loader: 'style!css!postcss-loader!sass', include: path.resolve('src/views/common/styles')}
   );
 
   config.devServer = {
@@ -139,7 +139,7 @@ if (ENV_DEVELOPMENT) {
 //-------------------------------------
 if (ENV_PRODUCTION) {
   config.module.loaders.push(
-    {test: /\.scss$/, loader: ExtractTextPlugin.extract('css!postcss-loader!sass'), include: path.resolve('src/styles')}
+    {test: /\.scss$/, loader: ExtractTextPlugin.extract('css!postcss-loader!sass'), include: path.resolve('src/views/common/styles')}
   );
 
   config.plugins.push(
@@ -165,6 +165,6 @@ if (ENV_TEST) {
   config.devtool = 'inline-source-map';
 
   config.module.loaders.push(
-    {test: /\.scss$/, loader: 'style!css!postcss-loader!sass', include: path.resolve('src/styles')}
+    {test: /\.scss$/, loader: 'style!css!postcss-loader!sass', include: path.resolve('src/views/common/styles')}
   );
 }

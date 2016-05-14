@@ -1,7 +1,7 @@
 import { Injectable } from 'angular2/core';
 import { Headers, Http, Request, RequestMethod, Response } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
-import { Task } from '../task/task';
+import { Task } from 'src/core/tasks';
 import { API_TASKS_URL } from './constants';
 
 

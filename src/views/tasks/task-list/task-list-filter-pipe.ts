@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from 'angular2/core';
-import { Task } from 'modules/task';
+import { Task } from 'src/core/tasks';
 
 
 @Pipe({

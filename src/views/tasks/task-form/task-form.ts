@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from 'angular2/core';
-import { TaskService } from 'modules/task';
+import { TaskService } from 'src/core/tasks';
 
 const styles: string = require('./task-form.scss');
 

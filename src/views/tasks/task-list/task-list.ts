@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from 'angular2/core';
 import { RouterLink, RouteParams } from 'angular2/router';
 import { Observable } from 'rxjs/Observable';
-import { Task } from 'modules/task';
+import { Task } from 'src/core/tasks';
 import { TaskItem } from '../task-item/task-item';
 import { TaskListFilterPipe } from './task-list-filter-pipe';
 

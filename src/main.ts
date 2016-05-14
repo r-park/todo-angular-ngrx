@@ -3,16 +3,16 @@ import { bootstrap } from 'angular2/platform/browser';
 import { HTTP_PROVIDERS } from 'angular2/http';
 import { APP_BASE_HREF, ROUTER_PROVIDERS } from 'angular2/router';
 
-// module providers
-import { API_PROVIDERS } from 'modules/api';
-import { STORE_PROVIDER } from 'modules/store';
-import { TASK_PROVIDERS } from 'modules/task';
+// core
+import { API_PROVIDERS } from './core/api';
+import { STORE_PROVIDER } from './core/store';
+import { TASK_PROVIDERS } from './core/tasks';
 
 // root component
-import { App } from 'components/app/app';
+import { App } from './views/app/app';
 
 // global styles
-import 'styles/styles.scss';
+import './views/common/styles.scss';
 
 
 bootstrap(App, [

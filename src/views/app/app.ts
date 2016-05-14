@@ -1,6 +1,6 @@
 import { Component } from 'angular2/core';
 import { RouteConfig, RouterOutlet } from 'angular2/router';
-import { Tasks } from '../tasks/tasks';
+import { Tasks } from 'src/views/tasks/tasks';
 
 const styles: string = require('./app.scss');
 

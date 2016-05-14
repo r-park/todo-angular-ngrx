@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from 'angular2/core';
-import { TaskService } from 'modules/task';
+import { TaskService } from 'src/core/tasks';
 import { TaskForm } from './task-form/task-form';
 import { TaskList } from './task-list/task-list';
 

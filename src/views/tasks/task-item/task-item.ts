@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from 'angular2/core';
-import { Task, TaskService } from 'modules/task';
-import { Autofocus } from 'directives/autofocus-directive';
+import { Task, TaskService } from 'src/core/tasks';
+import { Autofocus } from 'src/views/common/directives/autofocus-directive';
 
 const styles: string = require('./task-item.scss');
 const template: string = require('./task-item.html');
