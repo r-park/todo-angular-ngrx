@@ -8,6 +8,7 @@ A simple Todo app example featuring [ngrx/store](https://github.com/ngrx/store) 
 - [ngrx/store](https://github.com/ngrx/store)
 - [ngrx/router](https://github.com/ngrx/router)
 - [ngrx/effects](https://github.com/ngrx/effects)
+- [ngrx-store-logger](https://github.com/btroncone/ngrx-store-logger)
 - RxJS
 - SASS
 - Typescript
