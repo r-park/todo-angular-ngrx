@@ -3,7 +3,7 @@
 const express = require('express');
 const low = require('lowdb');
 const path = require('path');
-const storage = require('lowdb/file-sync');
+const storage = require('lowdb/lib/file-sync');
 const uuid = require('node-uuid');
 
 
@@ -11,6 +11,7 @@ const uuid = require('node-uuid');
 //  DATABASE
 //---------------------------------------------------------
 const db = low(path.join(__dirname, 'db.json'), {storage});
+db.set('tasks', []).value();
 
 
 //=========================================================
@@ -31,13 +32,13 @@ router.use((req, res, next) => {
 router.post('/tasks', (req, res) => {
   let data = req.body;
   data.id = uuid.v4();
-  let task = db('tasks').chain().push(data).last().value();
+  let task = db.get('tasks').push(data).last().value();
   res.status(200).json(task);
 });
 
 
 router.get('/tasks', (req, res) => {
-  res.status(200).json(db('tasks'));
+  res.status(200).json(db.get('tasks').value());
 });
 
 
@@ -48,14 +49,14 @@ router.get('/tasks/:id', (req, res) => {
 
 router.put('/tasks/:id', (req, res) => {
   let id = req.params.id;
-  let task = db('tasks').chain().find({id}).assign(req.body).value();
+  let task = db.get('tasks').find({id}).assign(req.body).value();
   res.status(200).json(task);
 });
 
 
 router.delete('/tasks/:id', (req, res) => {
   let id = req.params.id;
-  let task = db('tasks').find({id});
-  db('tasks').remove({id});
+  let task = db.get('tasks').find({id}).value();
+  db.get('tasks').remove({id}).value();
   res.status(200).json(task);
 });

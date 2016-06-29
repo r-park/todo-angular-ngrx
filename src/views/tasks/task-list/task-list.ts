@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Task } from 'src/core/tasks';
 import { TaskItem } from '../task-item/task-item';
@@ -26,13 +26,18 @@ import { TaskListFilterPipe } from './task-list-filter-pipe';
 
     <div class="task-list">
       <task-item 
-        *ngFor="let task of tasks$ | async | filterTasks:filter"
-        [task]="task"></task-item>
+        *ngFor="let task of tasks | async | filterTasks:filter"
+        [task]="task"
+        (remove)="remove.emit(task)"
+        (update)="update.emit({task: task, changes: $event})"></task-item>
     </div>
   `
 })
 
 export class TaskList {
-  @Input() filter: Observable<string>;
-  @Input() tasks$: Observable<Task[]>;
+  @Input() filter: string;
+  @Input() tasks: Observable<Task[]>;
+
+  @Output() remove: EventEmitter<any> = new EventEmitter(false);
+  @Output() update: EventEmitter<any> = new EventEmitter(false);
 }

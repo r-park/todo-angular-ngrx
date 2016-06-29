@@ -13,6 +13,8 @@ import '@ngrx/store';
 // RxJS
 import 'rxjs/Observable';
 import 'rxjs/Subject';
+import 'rxjs/add/operator/let';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/takeUntil';
+import 'rxjs/add/operator/withLatestFrom';

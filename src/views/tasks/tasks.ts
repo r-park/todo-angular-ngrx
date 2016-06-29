@@ -20,13 +20,15 @@ import { TaskList } from './task-list/task-list';
   template: `
     <div class="g-row">
       <div class="g-col">
-        <task-form></task-form>
+        <task-form (createTask)="taskService.createTask($event)"></task-form>
       </div>
 
       <div class="g-col">
         <task-list 
           [filter]="filter$ | async"
-          [tasks$]="taskService.tasks$"></task-list>
+          [tasks]="taskService.tasks$"
+          (remove)="taskService.deleteTask($event)"
+          (update)="taskService.updateTask($event.task, $event.changes)"></task-list>
       </div>
     </div>
   `

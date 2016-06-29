@@ -1,22 +1,22 @@
-import { Action, Reducer } from '@ngrx/store';
+import { Action, ActionReducer } from '@ngrx/store';
 import { Task } from './task';
-import * as types from './action-types';
+import { TaskActions } from './task-actions';
 
 
-export const taskReducer: Reducer<Task[]> = (state: Task[] = [], {payload, type}: Action) => {
+export const taskReducer: ActionReducer<Task[]> = (state: Task[] = [], {payload, type}: Action) => {
   switch (type) {
-    case types.CREATE_TASK_SUCCESS:
+    case TaskActions.CREATE_TASK_FULFILLED:
       return [ ...state, payload.task ];
 
-    case types.DELETE_TASK_SUCCESS:
+    case TaskActions.DELETE_TASK_FULFILLED:
       return state.filter((task: Task) => {
         return task.id !== payload.task.id;
       });
 
-    case types.FETCH_TASKS_SUCCESS:
+    case TaskActions.FETCH_TASKS_FULFILLED:
       return payload.tasks || [];
 
-    case types.UPDATE_TASK_SUCCESS:
+    case TaskActions.UPDATE_TASK_FULFILLED:
       return state.map((task: Task) => {
         return task.id === payload.task.id ? payload.task : task;
       });
