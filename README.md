@@ -4,10 +4,10 @@
 # Todo app with Angular2 and ngrx/store
 A simple Todo app example featuring [ngrx/store](https://github.com/ngrx/store) — RxJS powered state management inspired by Redux for Angular2 apps.
 
-- Angular `2.0.0-rc.1`
+- Angular `2.0.0-rc.3`
 - [ngrx/store](https://github.com/ngrx/store)
 - [ngrx/router](https://github.com/ngrx/router)
-- [store-saga](https://github.com/CodeSequence/store-saga)
+- [ngrx/effects](https://github.com/ngrx/effects)
 - RxJS
 - SASS
 - Typescript
@@ -23,7 +23,7 @@ Getting Started
 ---------------
 
 #### Prerequisites
-- `node >=5.11`
+- `node >=5.12`
 
 #### Quick Start
 ```shell

@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Task, TaskService } from 'src/core/tasks';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Task } from 'src/core/tasks';
 import { AutofocusDirective } from 'src/views/common';
 
 
@@ -17,15 +17,11 @@ import { AutofocusDirective } from 'src/views/common';
 
 export class TaskItem {
   @Input() task: Task;
+  @Output() remove: EventEmitter<any> = new EventEmitter(false);
+  @Output() update: EventEmitter<any> = new EventEmitter(false);
 
   editing: boolean = false;
   title: string = '';
-
-  constructor(public taskService: TaskService) {}
-
-  delete(): void {
-    this.taskService.deleteTask(this.task);
-  }
 
   editTitle(): void {
     this.editing = true;
@@ -36,7 +32,7 @@ export class TaskItem {
     if (this.editing) {
       const title = this.title.trim();
       if (title.length && title !== this.task.title) {
-        this.taskService.updateTask(this.task, {title});
+        this.update.emit({title});
       }
       this.stopEditing();
     }
@@ -47,7 +43,7 @@ export class TaskItem {
   }
 
   toggleStatus(): void {
-    this.taskService.updateTask(this.task, {
+    this.update.emit({
       completed: !this.task.completed
     });
   }

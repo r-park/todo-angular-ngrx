@@ -1,24 +1,15 @@
 {
   "rules": {
-    "align": [
-      false,
-      "parameters",
-      "arguments",
-      "statements"
-    ],
+    "align": false,
     "ban": [
       true,
-      [ "_", "forEach" ],
-      [ "_", "each" ],
-      [ "$", "each" ],
-      [ "angular", "forEach" ]
+      ["_", "forEach"],
+      ["_", "each"],
+      ["$", "each"],
+      ["angular", "forEach"]
     ],
     "class-name": true,
-    "comment-format": [
-      false,
-      "check-space",
-      "check-lowercase"
-    ],
+    "comment-format": false,
     "curly": false,
     "eofline": true,
     "forin": true,
@@ -33,17 +24,10 @@
     "jsdoc-format": true,
     "label-position": true,
     "label-undefined": true,
-    "max-line-length": [
-      false,
-      140
-    ],
+    "max-line-length": false,
     "member-access": false,
-    "member-ordering": [
-      true,
-      "public-before-private",
-      "static-before-instance",
-      "variables-before-functions"
-    ],
+    "member-ordering": false,
+    "new-parens": true,
     "no-angle-bracket-type-assertion": true,
     "no-any": false,
     "no-arg": true,
@@ -61,6 +45,7 @@
     "no-construct": true,
     "no-constructor-vars": false,
     "no-debugger": true,
+    "no-default-export": false,
     "no-duplicate-key": true,
     "no-duplicate-variable": true,
     "no-empty": true,
@@ -93,7 +78,10 @@
       "avoid-escape"
     ],
     "radix": true,
-    "semicolon": [true, "always"],
+    "semicolon": [
+      true,
+      "always"
+    ],
     "switch-default": false,
     "trailing-comma": [
       true,
@@ -110,8 +98,7 @@
       true,
       "call-signature",
       "parameter",
-      "property-declaration",
-      "member-variable-declaration"
+      "property-declaration"
     ],
     "typedef-whitespace": [
       true,
@@ -131,14 +118,9 @@
       }
     ],
     "use-isnan": true,
-    "use-strict": [
-      false,
-      "check-module",
-      "check-function"
-    ],
+    "use-strict": false,
     "variable-name": [
       true,
-      "check-format",
       "allow-leading-underscore",
       "ban-keywords"
     ],

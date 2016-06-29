@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TaskService } from 'src/core/tasks';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 
 
 @Component({
@@ -11,12 +10,12 @@ import { TaskService } from 'src/core/tasks';
   template: `
     <form class="task-form" (ngSubmit)="submit()" novalidate>
       <input
-        (keyup.escape)="clear()"
-        ngControl="title"
         [(ngModel)]="title"
+        (keyup.escape)="clear()"
         autocomplete="off"
         autofocus
         class="task-form__input"
+        name="title"
         placeholder="What needs to be done?"
         required
         type="text">
@@ -25,9 +24,9 @@ import { TaskService } from 'src/core/tasks';
 })
 
 export class TaskForm {
-  title: string = '';
+  @Output() createTask: EventEmitter<any> = new EventEmitter(false);
 
-  constructor(public taskService: TaskService) {}
+  title: string = '';
 
   clear(): void {
     this.title = '';
@@ -36,7 +35,7 @@ export class TaskForm {
   submit(): void {
     const title: string = this.title.trim();
     if (title.length) {
-      this.taskService.createTask(title);
+      this.createTask.emit(title);
     }
     this.clear();
   }

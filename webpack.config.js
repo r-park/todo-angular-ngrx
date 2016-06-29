@@ -3,6 +3,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
+const WebpackMd5Hash = require('webpack-md5-hash');
 
 
 //=========================================================
@@ -14,8 +15,8 @@ const ENV_DEVELOPMENT = NODE_ENV === 'development';
 const ENV_PRODUCTION = NODE_ENV === 'production';
 const ENV_TEST = NODE_ENV === 'test';
 
-const HOST = 'localhost';
-const PORT = 3000;
+const HOST = process.env.HOST || 'localhost';
+const PORT = process.env.PORT || 3000;
 
 
 //=========================================================
@@ -36,10 +37,6 @@ config.module = {
     {test: /\.html$/, loader: 'raw'},
     {test: /\.ts$/, loader: 'ts', exclude: /node_modules/},
     {test: /\.scss$/, loader: 'raw!postcss!sass', exclude: path.resolve('src/views/common/styles'), include: path.resolve('src/views')}
-  ],
-
-  noParse: [
-    /angular2\/bundles\/.+/
   ]
 };
 
@@ -64,35 +61,10 @@ config.sassLoader = {
 //  DEVELOPMENT or PRODUCTION
 //-------------------------------------
 if (ENV_DEVELOPMENT || ENV_PRODUCTION) {
-  config.devtool = 'source-map';
-
   config.entry = {
-    main: [
-      './src/main'
-    ],
-    vendor: [
-      'core-js/es6/array',
-      'core-js/es6/map',
-      'core-js/es6/set',
-      'core-js/es6/string',
-      'core-js/es6/symbol',
-      'core-js/es7/reflect',
-      'core-js/fn/array/includes',
-      'core-js/fn/object/assign',
-      'zone.js',
-      '@angular/common',
-      '@angular/core',
-      '@angular/http',
-      '@angular/platform-browser-dynamic',
-      '@ngrx/router',
-      '@ngrx/store',
-      'rxjs/Observable',
-      'rxjs/Subject',
-      'rxjs/add/operator/map',
-      'rxjs/add/operator/pluck',
-      'rxjs/add/operator/takeUntil',
-      'store-saga'
-    ]
+    main: ['./src/main.ts'],
+    polyfills: './src/polyfills.ts',
+    vendor: './src/vendor.ts'
   };
 
   config.output = {
@@ -103,11 +75,13 @@ if (ENV_DEVELOPMENT || ENV_PRODUCTION) {
 
   config.plugins.push(
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor', filename: 'vendor.js', minChunks: Infinity
+      name: ['vendor', 'polyfills'],
+      minChunks: Infinity
     }),
     new HtmlWebpackPlugin({
+      chunkSortMode: 'dependency',
       filename: 'index.html',
-      hash: true,
+      hash: false,
       inject: 'body',
       template: './src/index.html'
     })
@@ -119,6 +93,8 @@ if (ENV_DEVELOPMENT || ENV_PRODUCTION) {
 //  DEVELOPMENT
 //-------------------------------------
 if (ENV_DEVELOPMENT) {
+  config.devtool = 'cheap-module-source-map';
+
   config.entry.main.unshift(`webpack-dev-server/client?http://${HOST}:${PORT}`);
 
   config.module.loaders.push(
@@ -150,12 +126,17 @@ if (ENV_DEVELOPMENT) {
 //  PRODUCTION
 //-------------------------------------
 if (ENV_PRODUCTION) {
+  config.devtool = 'source-map';
+
+  config.output.filename = '[name].[chunkhash].js';
+
   config.module.loaders.push(
     {test: /\.scss$/, loader: ExtractTextPlugin.extract('css?-autoprefixer!postcss!sass'), include: path.resolve('src/views/common/styles')}
   );
 
   config.plugins.push(
-    new ExtractTextPlugin('styles.css'),
+    new WebpackMd5Hash(),
+    new ExtractTextPlugin('styles.[contenthash].css'),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       mangle: true,

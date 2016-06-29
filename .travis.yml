@@ -4,7 +4,7 @@ dist: trusty
 language: node_js
 
 node_js:
-  - "5.11"
+  - "5.12"
 
 before_install:
   - export CHROME_BIN=chromium-browser
