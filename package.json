@@ -48,6 +48,7 @@
     "zone.js": "0.6.12"
   },
   "devDependencies": {
+    "@ngrx/store-devtools": "2.0.0-beta.1",
     "autoprefixer": "~6.4.0",
     "body-parser": "~1.15.2",
     "cross-env": "~2.0.0",
@@ -66,7 +67,6 @@
     "lowdb": "~0.13.1",
     "minx": "r-park/minx.git",
     "morgan": "~1.7.0",
-    "ngrx-store-logger": "~0.1.7",
     "node-sass": "~3.8.0",
     "node-uuid": "~1.4.7",
     "nodemon": "~1.10.0",

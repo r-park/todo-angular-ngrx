@@ -10,7 +10,7 @@ export class TaskService {
   tasks$: Observable<Task[]>;
 
   constructor(private actions: TaskActions, private store: Store<any>) {
-    this.tasks$ = store.select('tasks');
+    this.tasks$ = store.select('tasks') as Observable<Task[]>;
     store.dispatch(this.actions.fetchTasks());
   }
 

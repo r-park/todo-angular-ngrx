@@ -36,12 +36,12 @@ import { TaskList } from './task-list/task-list';
 
 export class Tasks {
   filter$: Observable<string>;
-  ngOnDestroy$: Subject<boolean> = new Subject();
+  ngOnDestroy$ = new Subject<boolean>();
 
   constructor(public params$: QueryParams, public taskService: TaskService) {
     this.filter$ = params$
       .takeUntil(this.ngOnDestroy$)
-      .pluck('filter');
+      .pluck<string>('filter');
   }
 
   ngOnDestroy(): void {
