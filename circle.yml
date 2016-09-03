@@ -1,0 +1,11 @@
+machine:
+  node:
+    version: 6.4
+
+dependencies:
+  pre:
+    - rm -rf node_modules
+
+test:
+  override:
+    - npm run build

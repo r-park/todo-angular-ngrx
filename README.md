@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/r-park/todo-angular2-ngrx.svg?branch=master)](https://travis-ci.org/r-park/todo-angular2-ngrx)
+[![CircleCI](https://circleci.com/gh/r-park/todo-angular2-ngrx.svg?style=shield&circle-token=dd1325d92e93517cb5c52669e92c7f1698b55bc0)](https://circleci.com/gh/r-park/todo-angular2-ngrx)
 
 
 # Todo app with Angular2 and ngrx/store
