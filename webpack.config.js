@@ -20,10 +20,35 @@ const PORT = process.env.PORT || 3000;
 
 
 //=========================================================
+//  LOADERS
+//---------------------------------------------------------
+const loaders = {
+  componentStyles: {
+    test: /\.scss$/,
+    loader: 'raw!postcss!sass',
+    exclude: path.resolve('src/views/common')
+  },
+  sharedStyles: {
+    test: /\.scss$/,
+    loader: 'style!css!postcss!sass',
+    include: path.resolve('src/views/common')
+  },
+  html: {
+    test: /\.html$/,
+    loader: 'raw'
+  },
+  typescript: {
+    test: /\.ts$/,
+    loader: 'ts',
+    exclude: /node_modules/
+  }
+};
+
+
+//=========================================================
 //  CONFIG
 //---------------------------------------------------------
-const config = {};
-module.exports = config;
+const config = module.exports = {};
 
 
 config.resolve = {
@@ -34,9 +59,9 @@ config.resolve = {
 
 config.module = {
   loaders: [
-    {test: /\.html$/, loader: 'raw'},
-    {test: /\.ts$/, loader: 'ts', exclude: /node_modules/},
-    {test: /\.scss$/, loader: 'raw!postcss!sass', exclude: path.resolve('src/views/common/styles'), include: path.resolve('src/views')}
+    loaders.typescript,
+    loaders.componentStyles,
+    loaders.html
   ]
 };
 
@@ -47,7 +72,7 @@ config.plugins = [
 ];
 
 config.postcss = [
-  autoprefixer({ browsers: ['last 3 versions'] })
+  autoprefixer({browsers: ['last 3 versions']})
 ];
 
 config.sassLoader = {
@@ -97,16 +122,13 @@ if (ENV_DEVELOPMENT) {
 
   config.entry.main.unshift(`webpack-dev-server/client?http://${HOST}:${PORT}`);
 
-  config.module.loaders.push(
-    {test: /\.scss$/, loader: 'style!css!postcss!sass', include: path.resolve('src/views/common/styles')}
-  );
+  config.module.loaders.push(loaders.sharedStyles);
 
   config.devServer = {
     contentBase: './src',
     historyApiFallback: true,
     host: HOST,
     port: PORT,
-    publicPath: config.output.publicPath,
     stats: {
       cached: true,
       cachedAssets: true,
@@ -130,9 +152,11 @@ if (ENV_PRODUCTION) {
 
   config.output.filename = '[name].[chunkhash].js';
 
-  config.module.loaders.push(
-    {test: /\.scss$/, loader: ExtractTextPlugin.extract('css?-autoprefixer!postcss!sass'), include: path.resolve('src/views/common/styles')}
-  );
+  config.module.loaders.push({
+    test: /\.scss$/,
+    loader: ExtractTextPlugin.extract('css?-autoprefixer!postcss!sass'),
+    include: path.resolve('src/views/common')
+  });
 
   config.plugins.push(
     new WebpackMd5Hash(),
@@ -157,7 +181,5 @@ if (ENV_PRODUCTION) {
 if (ENV_TEST) {
   config.devtool = 'inline-source-map';
 
-  config.module.loaders.push(
-    {test: /\.scss$/, loader: 'style!css!postcss!sass', include: path.resolve('src/views/common/styles')}
-  );
+  config.module.loaders.push(loaders.sharedStyles);
 }

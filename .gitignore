@@ -5,7 +5,6 @@
 server/db.json
 target/
 tmp/
-typings/
 
 
 #---------------------------------
