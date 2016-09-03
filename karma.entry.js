@@ -7,6 +7,7 @@ require('core-js/es7/reflect');
 require('core-js/fn/array/includes');
 require('core-js/fn/object/assign');
 require('zone.js');
+require('ts-helpers');
 
 // Specify platform and application providers
 var browser = require('@angular/platform-browser-dynamic/testing');
