@@ -1,21 +1,13 @@
 import 'rxjs/add/operator/pluck';
-import 'rxjs/add/operator/takeUntil';
 
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { QueryParams } from '@ngrx/router';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-import { TaskService } from 'src/core/tasks';
-import { TaskForm } from './task-form/task-form';
-import { TaskList } from './task-list/task-list';
+import { TaskService } from '../task-service';
 
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  directives: [
-    TaskForm,
-    TaskList
-  ],
   selector: 'tasks',
   template: `
     <div class="g-row">
@@ -34,17 +26,11 @@ import { TaskList } from './task-list/task-list';
   `
 })
 
-export class Tasks {
+export class TasksComponent {
   filter$: Observable<string>;
-  ngOnDestroy$ = new Subject<boolean>();
 
-  constructor(public params$: QueryParams, public taskService: TaskService) {
-    this.filter$ = params$
-      .takeUntil(this.ngOnDestroy$)
+  constructor(public route: ActivatedRoute, public taskService: TaskService) {
+    this.filter$ = route.params
       .pluck<string>('filter');
-  }
-
-  ngOnDestroy(): void {
-    this.ngOnDestroy$.next(true);
   }
 }

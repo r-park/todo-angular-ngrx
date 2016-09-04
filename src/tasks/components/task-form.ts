@@ -23,7 +23,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angul
   `
 })
 
-export class TaskForm {
+export class TaskFormComponent {
   @Output() createTask: EventEmitter<any> = new EventEmitter(false);
 
   title: string = '';

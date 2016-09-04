@@ -18,9 +18,9 @@ import { Component } from '@angular/core';
     </header>
 
     <main class="main">
-      <route-view></route-view>
+      <router-outlet></router-outlet>
     </main>
   `
 })
 
-export class App {}
+export class AppComponent {}

@@ -1,13 +1,9 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { Task } from 'src/core/tasks';
-import { AutofocusDirective } from 'src/views/common';
+import { Task } from '../task';
 
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  directives: [
-    AutofocusDirective
-  ],
   selector: 'task-item',
   styles: [
     require('./task-item.scss')
@@ -15,7 +11,7 @@ import { AutofocusDirective } from 'src/views/common';
   template: require('./task-item.html')
 })
 
-export class TaskItem {
+export class TaskItemComponent {
   @Input() task: Task;
   @Output() remove: EventEmitter<any> = new EventEmitter(false);
   @Output() update: EventEmitter<any> = new EventEmitter(false);
