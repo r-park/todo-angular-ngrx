@@ -26,12 +26,12 @@ const loaders = {
   componentStyles: {
     test: /\.scss$/,
     loader: 'raw!postcss!sass',
-    exclude: path.resolve('src/views/common')
+    exclude: path.resolve('src/shared/styles')
   },
   sharedStyles: {
     test: /\.scss$/,
     loader: 'style!css!postcss!sass',
-    include: path.resolve('src/views/common')
+    include: path.resolve('src/shared/styles')
   },
   html: {
     test: /\.html$/,
@@ -155,7 +155,7 @@ if (ENV_PRODUCTION) {
   config.module.loaders.push({
     test: /\.scss$/,
     loader: ExtractTextPlugin.extract('css?-autoprefixer!postcss!sass'),
-    include: path.resolve('src/views/common')
+    include: path.resolve('src/shared/styles')
   });
 
   config.plugins.push(
@@ -163,7 +163,9 @@ if (ENV_PRODUCTION) {
     new ExtractTextPlugin('styles.[contenthash].css'),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
-      mangle: true,
+      mangle: {
+        screw_ie8: true  // eslint-disable-line camelcase
+      },
       compress: {
         dead_code: true, // eslint-disable-line camelcase
         screw_ie8: true, // eslint-disable-line camelcase

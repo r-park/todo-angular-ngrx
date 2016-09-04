@@ -1,27 +1,19 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Task } from 'src/core/tasks';
-import { TaskItem } from '../task-item/task-item';
-import { TaskListFilterPipe } from './task-list-filter-pipe';
+import { Task } from '../task';
 
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  directives: [
-    TaskItem
-  ],
-  pipes: [
-    TaskListFilterPipe
-  ],
   selector: 'task-list',
   styles: [
     require('./task-list.scss')
   ],
   template: `
     <ul class="task-filters">
-      <li><a [class.active]="!filter" linkTo="/">View All</a></li>
-      <li><a [class.active]="filter == 'active'" linkTo="/" [queryParams]="{filter: 'active'}">Active</a></li>
-      <li><a [class.active]="filter == 'completed'" linkTo="/" [queryParams]="{filter: 'completed'}">Completed</a></li>
+      <li><a [class.active]="!filter" routerLink="/tasks">View All</a></li>
+      <li><a [class.active]="filter == 'active'" [routerLink]="['/tasks', {filter: 'active'}]">Active</a></li>
+      <li><a [class.active]="filter == 'completed'" [routerLink]="['/tasks', {filter: 'completed'}]">Completed</a></li>
     </ul>
 
     <div class="task-list">
@@ -34,7 +26,7 @@ import { TaskListFilterPipe } from './task-list-filter-pipe';
   `
 })
 
-export class TaskList {
+export class TaskListComponent {
   @Input() filter: string;
   @Input() tasks: Observable<Task[]>;
 
