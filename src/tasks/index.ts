@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 
-import { SharedModule } from '../shared';
+import { SharedModule } from 'src/shared';
 import { TaskFormComponent } from './components/task-form';
 import { TaskItemComponent } from './components/task-item';
 import { TaskListComponent } from './components/task-list';
