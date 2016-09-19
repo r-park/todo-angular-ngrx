@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 
-import { TasksModule, taskReducer } from '../tasks';
+import { TasksModule, taskReducer } from 'src/tasks';
 import { AppComponent } from './components/app';
 
 
