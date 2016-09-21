@@ -11,6 +11,7 @@ Stack
 - Angular 2
 - [ngrx/store](https://github.com/ngrx/store)
 - [ngrx/effects](https://github.com/ngrx/effects)
+- [ngrx/store-devtools](https://github.com/ngrx/store-devtools)
 - RxJS
 - SASS
 - Typescript 2
