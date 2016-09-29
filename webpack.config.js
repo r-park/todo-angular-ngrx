@@ -28,7 +28,7 @@ const PORT = 3000;
 //=========================================================
 //  LOADERS
 //---------------------------------------------------------
-const loaders = {
+const rules = {
   componentStyles: {
     test: /\.scss$/,
     loader: 'raw!postcss!sass',
@@ -65,10 +65,10 @@ config.resolve = {
 };
 
 config.module = {
-  loaders: [
-    loaders.typescript,
-    loaders.componentStyles,
-    loaders.html
+  rules: [
+    rules.typescript,
+    rules.componentStyles,
+    rules.html
   ]
 };
 
@@ -76,21 +76,26 @@ config.plugins = [
   new DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(NODE_ENV)
   }),
+  new LoaderOptionsPlugin({
+    debug: false,
+    minimize: true,
+    options: {
+      postcss: [
+        autoprefixer({browsers: ['last 3 versions']})
+      ],
+      resolve: {},
+      sassLoader: {
+        outputStyle: 'compressed',
+        precision: 10,
+        sourceComments: false
+      }
+    }
+  }),
   new ContextReplacementPlugin(
     /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
     path.resolve('src')
   )
 ];
-
-config.postcss = [
-  autoprefixer({browsers: ['last 3 versions']})
-];
-
-config.sassLoader = {
-  outputStyle: 'compressed',
-  precision: 10,
-  sourceComments: false
-};
 
 
 //=====================================
@@ -129,7 +134,7 @@ if (ENV_DEVELOPMENT || ENV_PRODUCTION) {
 if (ENV_DEVELOPMENT) {
   config.devtool = 'cheap-module-source-map';
 
-  config.module.loaders.push(loaders.sharedStyles);
+  config.module.rules.push(rules.sharedStyles);
 
   config.plugins.push(new ProgressPlugin());
 
@@ -157,32 +162,29 @@ if (ENV_DEVELOPMENT) {
 //  PRODUCTION
 //-------------------------------------
 if (ENV_PRODUCTION) {
-  config.devtool = 'source-map';
+  config.devtool = 'hidden-source-map';
 
   config.output.filename = '[name].[chunkhash].js';
 
-  config.module.loaders.push({
+  config.module.rules.push({
     test: /\.scss$/,
     loader: ExtractTextPlugin.extract('css?-autoprefixer!postcss!sass'),
     include: path.resolve('src/shared/styles')
   });
 
   config.plugins.push(
-    new LoaderOptionsPlugin({
-      debug: false,
-      minimize: true
-    }),
     new WebpackMd5Hash(),
     new ExtractTextPlugin('styles.[contenthash].css'),
     new UglifyJsPlugin({
-      mangle: {
-        screw_ie8: true  // eslint-disable-line camelcase
-      },
+      comments: false,
       compress: {
         dead_code: true, // eslint-disable-line camelcase
         screw_ie8: true, // eslint-disable-line camelcase
         unused: true,
         warnings: false
+      },
+      mangle: {
+        screw_ie8: true  // eslint-disable-line camelcase
       }
     })
   );
@@ -195,5 +197,5 @@ if (ENV_PRODUCTION) {
 if (ENV_TEST) {
   config.devtool = 'inline-source-map';
 
-  config.module.loaders.push(loaders.sharedStyles);
+  config.module.rules.push(rules.sharedStyles);
 }
