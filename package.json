@@ -26,7 +26,7 @@
     "pretest": "run-s lint",
     "server:api": "cross-env NODE_ENV=development nodemon -w 'server/*.js' server/main.js",
     "server:dev": "cross-env NODE_ENV=development webpack-dev-server",
-    "start": "npm run server:api & npm run server:dev",
+    "start": "npm run server:api | npm run server:dev",
     "test": "cross-env NODE_ENV=test karma start --single-run",
     "test:watch": "cross-env NODE_ENV=test karma start"
   },
